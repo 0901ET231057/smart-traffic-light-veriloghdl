@@ -20,3 +20,13 @@ Files:
 - testbench.v → Simulation testbench
 - design.v → FSM logic
 - Waveform.png → Simulation result
+## Project Modules
+
+- FSM based Traffic Control
+- Pedestrian Button Logic
+- Ambulance Priority Override
+- Traffic Density Input
+
+## Simulation
+
+Waveform verified using EDA Playground.
