@@ -1,0 +1,49 @@
+`timescale 1ns/1ps
+module tb;
+
+reg clk=0;
+reg reset;
+reg pedestrian;
+reg ambulance;
+reg [1:0] traffic_density;
+
+wire red,yellow,green;
+
+smart_traffic uut(
+    .clk(clk),
+    .reset(reset),
+    .pedestrian(pedestrian),
+    .ambulance(ambulance),
+    .traffic_density(traffic_density),
+    .red(red),
+    .yellow(yellow),
+    .green(green)
+);
+
+always #5 clk=~clk;
+
+initial
+begin
+    reset=1;
+    pedestrian=0;
+    ambulance=0;
+    traffic_density=2'b01;
+    #10 reset=0;
+
+    #40 pedestrian=1;
+    #20 pedestrian=0;
+
+    #40 traffic_density=2'b11;
+
+    #40 ambulance=1;
+    #20 ambulance=0;
+
+    #200 $finish;
+end
+
+initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars;
+end
+
+endmodule
